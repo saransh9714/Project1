@@ -141,7 +141,7 @@
 </head>
 <body>
     <header>
-        <h1>ABC Party</h1>
+        <h1>RPS Continuation Party</h1>
     </header>
 
     <main>
@@ -194,12 +194,12 @@
             ctx.fillStyle = '#fff';
             ctx.font = 'bold 20px Poppins';
             ctx.textAlign = 'center';
-            ctx.fillText(`ABC Party`, canvas.width / 2, 50);
+            ctx.fillText(`RPS Continuation Party`, canvas.width / 2, 50);
             ctx.fillText(`Walking Street, Sector 29`, canvas.width / 2, 80);
             ctx.fillText(`4th Jan`, canvas.width / 2, 110);
 
             // QR code generation
-            const qrData = `ABC Party pass for, ${name}!Email: ${email}`;
+            const qrData = `Access Granted for ${name}`;
             const qr = new QRious({
                 value: qrData,
                 size: 200
