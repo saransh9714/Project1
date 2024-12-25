@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABC Party</title>
+    <title>RPS Continuation Party</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -107,6 +107,7 @@
             margin: 20px 0;
             border: 5px solid #fff;
             border-radius: 10px;
+            text-decoration: none;
         }
 
         footer {
@@ -168,7 +169,7 @@
     </main>
 
     <footer>
-        <p>Designed with ❤️ by saransh xD</p>
+        <p>Designed with ❤️</p>
     </footer>
 
     <script>
@@ -199,7 +200,7 @@
             ctx.fillText(`4th Jan`, canvas.width / 2, 110);
 
             // QR code generation
-            const qrData = `Access Granted for ${name}`;
+            const qrData = `Access Granted! Entry for, ${name}`;
             const qr = new QRious({
                 value: qrData,
                 size: 200
@@ -208,7 +209,24 @@
             qrImage.src = qr.toDataURL();
 
             qrImage.onload = () => {
-                ctx.drawImage(qrImage, 100, 120, 200, 200);
+                ctx.drawImage(qrImage, 100, 140, 200, 200);
+
+                // Add diagonal watermark across the image
+                ctx.save();
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                ctx.rotate(-Math.PI / 4);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+                ctx.font = 'bold 20px Poppins';
+                ctx.textAlign = 'center';
+
+                const watermarkText = 'RPS Conti Party';
+                for (let y = -canvas.height; y < canvas.height; y += 60) {
+                    for (let x = -canvas.width; x < canvas.width; x += 200) {
+                        ctx.fillText(watermarkText, x, y);
+                    }
+                }
+
+                ctx.restore();
 
                 // Heart shape with spacing
                 ctx.fillStyle = '#fff';
@@ -226,7 +244,7 @@
                 qrContainer.innerHTML = `
                     <p>Here is your personalized QR code, ${name}:</p>
                     <img src="${canvas.toDataURL()}" alt="QR Code">
-                    <p><a href="${canvas.toDataURL()}" download="Party_QR_${name}.png" class="btn">Save QR Code</a></p>
+                    <p><a href="${canvas.toDataURL()}" download="Party_QR_${name}.png" class="btn" style="text-decoration: none;">Save QR Code</a></p>
                 `;
             };
         }
